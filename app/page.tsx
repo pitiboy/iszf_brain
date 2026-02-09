@@ -25,7 +25,9 @@ export default function Chat() {
                         tool: {part.type}
                         <pre className="my-4 bg-zinc-100 p-2 rounded-sm">
                           {JSON.stringify(
-                            (part.input as any)?.content ?? part.input,
+                            (part.input as any)?.content ??
+                              (part.input as any)?.question ??
+                              part.input,
                             null,
                             2
                           )}
