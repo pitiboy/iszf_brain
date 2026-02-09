@@ -17,6 +17,21 @@ export default function Chat() {
                 switch (part.type) {
                   case "text":
                     return <p>{part.text}</p>;
+                  case "tool-addResource":
+                  case "tool-getInformation":
+                    return (
+                      <p>
+                        call{part.state === "output-available" ? "ed" : "ing"}{" "}
+                        tool: {part.type}
+                        <pre className="my-4 bg-zinc-100 p-2 rounded-sm">
+                          {JSON.stringify(
+                            (part.input as any)?.content ?? part.input,
+                            null,
+                            2
+                          )}
+                        </pre>
+                      </p>
+                    );
                 }
               })}
             </div>
